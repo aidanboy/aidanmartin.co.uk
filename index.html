@@ -15,6 +15,23 @@
     /* ── Base ── */
     html { font-size: 14px; scroll-behavior: smooth; }
 
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── Visually hidden (screen reader only) ── */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: #fff;
@@ -109,7 +126,8 @@
     header { margin-bottom: 3rem; }
 
     .header-intro {
-      font-size: 1rem;
+      font-size: 1.25rem;
+      font-weight: 500;
       color: #222;
       line-height: 1.8;
     }
@@ -167,7 +185,7 @@
       font-family: 'JetBrains Mono', 'Courier New', monospace;
       font-size: 0.7857rem;
       font-weight: 500;
-      color: #777;
+      color: #595959;
       white-space: nowrap;
       flex-shrink: 0;
     }
@@ -261,10 +279,10 @@
     }
 
     .footer-links a {
-      color: #aaa;
+      color: #595959;
       text-decoration: underline;
       text-underline-offset: 3px;
-      text-decoration-color: #ddd;
+      text-decoration-color: #bbb;
       transition: color 0.15s;
     }
     .footer-links a:hover { color: #111; }
@@ -347,24 +365,25 @@
 <main id="main">
 
   <header>
+    <h1 class="sr-only">Aidan Martin</h1>
     <p class="header-intro">Design Director with 15+ years building complex digital products across fintech and enterprise. I lead global teams, shape product strategy and stay hands-on — most at home where product, design and engineering need to work as one.</p>
   </header>
 
   <section id="summary" aria-labelledby="label-summary">
-    <p class="label" id="label-summary">Summary</p>
-    <div class="summary">
+    <h2 class="label" id="label-summary">Summary</h2>
+<div class="summary">
       <p>Design Director with 15+ years of experience building complex digital products across fintech, enterprise and regulated environments. I specialise in 0&rarr;1 product development — shaping strategy, building high-performing teams and shipping fast alongside engineering and business leadership.</p>
       <p>I work across product, design and engineering — most at home in complex, high-stakes environments where those disciplines need to work as one. At JP Morgan Payments I lead design across connectivity and client management platforms that serve 20,000+ enterprise clients and support a channel moving $10 trillion daily. Known for transforming high-touch, manual processes into scalable self-service products that drive product-led growth, I focus on measurable outcomes: adoption, operational efficiency and revenue — not just delivery.</p>
     </div>
   </section>
 
   <section id="experience" aria-labelledby="label-experience">
-    <p class="label" id="label-experience">Experience</p>
+    <h2 class="label" id="label-experience">Experience</h2>
 
     <!-- Current role — always visible -->
-    <article class="role role-recent">
+    <article class="role role-recent" aria-label="Design Leader, Connectivity Platforms at JP Morgan Payments, 2021 to present">
       <div class="role-header">
-        <span class="role-title">Design Leader, Connectivity Platforms</span>
+        <h3 class="role-title">Design Leader, Connectivity Platforms</h3>
         <span class="role-date">2021–Present</span>
       </div>
       <p class="role-company">JP Morgan Payments</p>
@@ -387,9 +406,9 @@
     </article>
 
     <!-- Mid roles — visible in Summary + Full -->
-    <article class="role role-mid">
+    <article class="role role-mid" aria-label="Client Experience and Product Design Lead at Idox Group, 2016 to 2021">
       <div class="role-header">
-        <span class="role-title">Client Experience &amp; Product Design Lead</span>
+        <h3 class="role-title">Client Experience &amp; Product Design Lead</h3>
         <span class="role-date">2016–2021</span>
       </div>
       <p class="role-company">Idox Group</p>
@@ -403,9 +422,9 @@
       <p class="role-impact"><strong>Impact:</strong> Increased delivery velocity &middot; Improved customer satisfaction and product quality across the division</p>
     </article>
 
-    <article class="role role-mid">
+    <article class="role role-mid" aria-label="UX Manager and Product Design Lead at JP Morgan, 2015 to 2016">
       <div class="role-header">
-        <span class="role-title">UX Manager &amp; Product Design Lead</span>
+        <h3 class="role-title">UX Manager &amp; Product Design Lead</h3>
         <span class="role-date">2015–2016</span>
       </div>
       <p class="role-company">JP Morgan</p>
@@ -418,9 +437,9 @@
     </article>
 
     <!-- Older roles — visible in Full only -->
-    <article class="role role-older">
+    <article class="role role-older" aria-label="Mobile UX Lead at JP Morgan, 2013 to 2015">
       <div class="role-header">
-        <span class="role-title">Mobile UX Lead</span>
+        <h3 class="role-title">Mobile UX Lead</h3>
         <span class="role-date">2013–2015</span>
       </div>
       <p class="role-company">JP Morgan</p>
@@ -432,9 +451,9 @@
       </ul>
     </article>
 
-    <article class="role role-older">
+    <article class="role role-older" aria-label="Design Lead at Alienation Ltd, 2007 to 2013">
       <div class="role-header">
-        <span class="role-title">Design Lead</span>
+        <h3 class="role-title">Design Lead</h3>
         <span class="role-date">2007–2013</span>
       </div>
       <p class="role-company">Alienation Ltd</p>
@@ -444,7 +463,7 @@
   </section>
 
   <section id="skills" aria-labelledby="label-skills">
-    <p class="label" id="label-skills">Capabilities</p>
+    <h2 class="label" id="label-skills">Capabilities</h2>
     <!-- Brief: core capabilities only -->
     <ul class="capabilities skills-brief">
       <li>Product Design</li>
@@ -471,7 +490,7 @@
   </section>
 
   <section id="tools" aria-labelledby="label-tools">
-    <p class="label" id="label-tools">Tools</p>
+    <h2 class="label" id="label-tools">Tools</h2>
     <ul class="capabilities">
       <li>Figma</li>
       <li>HTML, CSS &amp; JS</li>
@@ -483,7 +502,7 @@
   </section>
 
   <section id="speaking" aria-labelledby="label-speaking">
-    <p class="label" id="label-speaking">Speaking &amp; Thought Leadership</p>
+    <h2 class="label" id="label-speaking">Speaking &amp; Thought Leadership</h2>
     <div class="speaking">
       <p>Speaker and published contributor across design, product and technology.</p>
       <p>UX Glasgow &middot; BBC &middot; Creative Bloq &middot; Channel 4 &middot; .Net Magazine</p>
@@ -491,7 +510,7 @@
   </section>
 
   <section id="education" aria-labelledby="label-education">
-    <p class="label" id="label-education">Education</p>
+    <h2 class="label" id="label-education">Education</h2>
     <div class="education">
       <p>BA (Hons) Applied Graphics Technology &amp; Graphic Design &mdash; Glasgow Caledonian University</p>
     </div>
@@ -503,7 +522,7 @@
   <span class="footer-name">Aidan Martin</span>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/aidanmartindesigner/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="#">Email</a>
+    <a class="email-link" href="#" aria-label="Send email to Aidan Martin">Email</a>
     <span style="color:#ddd">Glasgow, UK</span>
   </div>
 </footer>
@@ -516,6 +535,8 @@
       btns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
     });
   });
+  const el = document.querySelector('.email-link');
+  if (el) el.href = 'mailto:' + 'aidanisavenue' + '@' + 'gmail.com';
 </script>
 
 </body>
