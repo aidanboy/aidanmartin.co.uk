@@ -302,18 +302,21 @@
     [data-view="full"] .skills-brief            { display: none; }
 
     /* Responsive — stack floating elements on small screens */
+    .site-header { display: contents; }
+
     @media (max-width: 680px) {
+      .site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem 2rem 0;
+      }
       .site-name {
         position: static;
-        display: block;
-        padding: 2rem 2rem 0;
         font-size: 16px;
       }
       .view-controls {
         position: static;
-        display: flex;
-        justify-content: flex-end;
-        padding: 1rem 2rem 0;
       }
       .view-toggle { flex-direction: row; }
       main { padding-top: 1rem; }
@@ -324,13 +327,14 @@
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<span class="site-name" aria-hidden="true">Aidan Martin</span>
-
-<div class="view-controls">
-  <div class="view-toggle" role="group" aria-label="Detail level">
-    <button class="view-btn" data-view="brief"   aria-pressed="true">Brief</button>
-    <button class="view-btn" data-view="summary" aria-pressed="false">Summary</button>
-    <button class="view-btn" data-view="full"    aria-pressed="false">Full</button>
+<div class="site-header">
+  <span class="site-name" aria-hidden="true">Aidan Martin</span>
+  <div class="view-controls">
+    <div class="view-toggle" role="group" aria-label="Detail level">
+      <button class="view-btn" data-view="brief"   aria-pressed="true">Brief</button>
+      <button class="view-btn" data-view="summary" aria-pressed="false">Summary</button>
+      <button class="view-btn" data-view="full"    aria-pressed="false">Full</button>
+    </div>
   </div>
 </div>
 
