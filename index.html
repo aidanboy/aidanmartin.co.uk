@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aidan Martin — Design Director</title>
+  <meta name="description" content="Design Director, Product &amp; Systems Leader, 0→1 Builder. Based in Glasgow, UK.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Base ── */
+    html { font-size: 14px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: #111;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 0 0 4px 4px;
+      text-decoration: none;
+      z-index: 999;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Focus ── */
+    :focus-visible {
+      outline: 2px solid #111;
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ── Floating name — fixed left ── */
+    .site-name {
+      position: fixed;
+      left: 2.5rem;
+      top: 2rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #111;
+      z-index: 10;
+    }
+
+    /* ── Floating toggle — fixed right ── */
+    .view-controls {
+      position: fixed;
+      right: 2rem;
+      top: 2rem;
+      z-index: 10;
+    }
+
+    .view-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: #f0f0f0;
+      border-radius: 6px;
+      padding: 3px;
+    }
+
+    .view-btn {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.7143rem;
+      font-weight: 500;
+      color: #888;
+      background: transparent;
+      border: none;
+      padding: 0.25rem 0.625rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: color 0.1s, background 0.1s, box-shadow 0.1s;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .view-btn[aria-pressed="true"] {
+      background: #fff;
+      color: #111;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .view-btn:hover:not([aria-pressed="true"]) { color: #333; }
+
+    /* ── Layout ── */
+    main {
+      max-width: 450px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* ── Header ── */
+    header { margin-bottom: 3rem; }
+
+    .header-intro {
+      font-size: 1rem;
+      color: #222;
+      line-height: 1.8;
+    }
+
+    /* ── Sections ── */
+    section { margin-bottom: 2.5rem; }
+
+    .label {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.7143rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Summary section ── */
+    .summary p {
+      font-size: 1rem;
+      color: #222;
+      margin-bottom: 1rem;
+    }
+    .summary p:last-child { margin-bottom: 0; }
+
+    /* ── Experience ── */
+    .role {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #ebebeb;
+    }
+    .role:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.125rem;
+    }
+
+    .role-title {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.8571rem;
+      font-weight: 600;
+      color: #111;
+      letter-spacing: -0.01em;
+    }
+
+    .role-date {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.7857rem;
+      font-weight: 500;
+      color: #777;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .role-company {
+      font-size: 0.9286rem;
+      color: #444;
+      margin-bottom: 0.75rem;
+    }
+
+    .role-brief-desc {
+      font-size: 1rem;
+      color: #222;
+    }
+
+    .role-intro {
+      font-size: 1rem;
+      color: #222;
+      margin-bottom: 0.75rem;
+    }
+
+    .role ul {
+      padding-left: 1.125rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .role ul li {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 0.35rem;
+    }
+
+    .role-impact {
+      font-size: 0.9286rem;
+      color: #666;
+    }
+
+    .role-impact strong {
+      font-weight: 500;
+      color: #444;
+    }
+
+    /* ── Skills / Tools ── */
+    .tag-list {
+      font-size: 1rem;
+      color: #333;
+      line-height: 2;
+    }
+
+    /* ── Speaking / Education ── */
+    .speaking p,
+    .education p {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 0.35rem;
+    }
+    .speaking p:last-child,
+    .education p:last-child { margin-bottom: 0; }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 450px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 2rem;
+      border-top: 1px solid #ebebeb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-name {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.8571rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .footer-links {
+      font-size: 0.8571rem;
+      color: #aaa;
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .footer-links a {
+      color: #aaa;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #ddd;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: #111; }
+
+    /* ════════════════════════════
+       View states
+    ════════════════════════════ */
+
+    /* Brief
+       – hide summary section
+       – hide intros, bullets, impact on all roles
+       – hide mid + older roles
+       – show brief-desc on current role only
+       – show brief skills only
+    */
+    [data-view="brief"] #summary                { display: none; }
+    [data-view="brief"] .role-intro             { display: none; }
+    [data-view="brief"] .role ul                { display: none; }
+    [data-view="brief"] .role-impact            { display: none; }
+    [data-view="brief"] .role-mid               { display: none; }
+    [data-view="brief"] .role-older             { display: none; }
+    [data-view="brief"] .skills-full            { display: none; }
+    [data-view="brief"] .role-company           { margin-bottom: 0.5rem; }
+    [data-view="brief"] #speaking               { display: none; }
+    [data-view="brief"] #education              { display: none; }
+
+    /* Summary
+       – hide brief-desc (use intro instead)
+       – hide bullets + impact
+       – hide older roles
+       – show full skills
+    */
+    [data-view="summary"] .role-brief-desc      { display: none; }
+    [data-view="summary"] .role ul              { display: none; }
+    [data-view="summary"] .role-impact          { display: none; }
+    [data-view="summary"] .role-older           { display: none; }
+    [data-view="summary"] .skills-brief         { display: none; }
+
+    /* Full – hide brief-desc, show everything else */
+    [data-view="full"] .role-brief-desc         { display: none; }
+    [data-view="full"] .skills-brief            { display: none; }
+
+    /* Responsive — stack floating elements on small screens */
+    @media (max-width: 680px) {
+      .site-name  { display: none; }
+      .view-controls {
+        position: static;
+        display: flex;
+        justify-content: flex-end;
+        padding: 1rem 1.5rem 0;
+      }
+      .view-toggle { flex-direction: row; }
+    }
+  </style>
+</head>
+<body data-view="brief">
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<span class="site-name" aria-hidden="true">Aidan Martin</span>
+
+<div class="view-controls">
+  <div class="view-toggle" role="group" aria-label="Detail level">
+    <button class="view-btn" data-view="brief"   aria-pressed="true">Brief</button>
+    <button class="view-btn" data-view="summary" aria-pressed="false">Summary</button>
+    <button class="view-btn" data-view="full"    aria-pressed="false">Full</button>
+  </div>
+</div>
+
+<main id="main">
+
+  <header>
+    <p class="header-intro">Design Director with 15+ years building complex digital products across fintech and enterprise. I lead global teams, shape product strategy and stay hands-on — most at home where product, design and engineering need to work as one.</p>
+  </header>
+
+  <section id="summary" aria-labelledby="label-summary">
+    <p class="label" id="label-summary">Summary</p>
+    <div class="summary">
+      <p>Design Director with 15+ years of experience building complex digital products across fintech, enterprise and regulated environments. I specialise in 0&rarr;1 product development — shaping strategy, building high-performing teams and shipping fast alongside engineering and business leadership.</p>
+      <p>I work across product, design and engineering — most at home in complex, high-stakes environments where those disciplines need to work as one. At JP Morgan Payments I lead design across connectivity and client management platforms that serve 20,000+ enterprise clients and support a channel moving $10 trillion daily. Known for transforming high-touch, manual processes into scalable self-service products that drive product-led growth, I focus on measurable outcomes: adoption, operational efficiency and revenue — not just delivery.</p>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="label-experience">
+    <p class="label" id="label-experience">Experience</p>
+
+    <!-- Current role — always visible -->
+    <article class="role role-recent">
+      <div class="role-header">
+        <span class="role-title">Design Leader, Connectivity</span>
+        <span class="role-date">2021–Present</span>
+      </div>
+      <p class="role-company">JP Morgan Payments</p>
+
+      <!-- Brief: one punchy paragraph -->
+      <p class="role-brief-desc">Leading design across connectivity and client management platforms for 20,000+ enterprise clients at JP Morgan Payments — a $10 trillion daily channel. Built the developer platform from 0&rarr;1 and cut client onboarding from 3+ months to near real-time through self-service product design.</p>
+
+      <!-- Summary+: full intro -->
+      <p class="role-intro">Leading design across a suite of connectivity, client management and internal platforms that serve 20,000+ enterprise clients across the API and File connectivity space — a channel responsible for moving $10 trillion daily.</p>
+      <ul>
+        <li>Lead a high-impact global design team delivering complex, mission-critical product experiences across client-facing and internal surfaces.</li>
+        <li>Own the design of the connectivity platform, client management platform and internal tooling — all built around self-service models and product-led growth principles.</li>
+        <li>Transformed high-touch, manual onboarding and integration workflows into scalable self-service experiences — reducing client onboarding from 3+ months to near real-time and eliminating swivel-chair internal processes across operations.</li>
+        <li>Partner closely with product, engineering, business and client stakeholders to shape product strategy, user workflows and delivery models.</li>
+        <li>Took on fractional product and engineering leadership to incubate the developer platform from the ground up — building and leading a cross-functional team of ~15 to take it from concept to delivery.</li>
+        <li>Established new design processes and built custom Figma plugins to accelerate team delivery — tooling adopted across the global design team.</li>
+        <li>Remain fully hands-on while mentoring designers and engineers and scaling design systems and delivery practices across the organisation.</li>
+      </ul>
+      <p class="role-impact"><strong>Impact:</strong> 20,000+ enterprise clients served &middot; $10 trillion daily channel &middot; Onboarding reduced from 3+ months to near real-time &middot; Increased product adoption and revenue through self-service and product-led growth</p>
+    </article>
+
+    <!-- Mid roles — visible in Summary + Full -->
+    <article class="role role-mid">
+      <div class="role-header">
+        <span class="role-title">Client Experience &amp; Product Design Lead</span>
+        <span class="role-date">2016–2021</span>
+      </div>
+      <p class="role-company">Idox Group</p>
+      <p class="role-intro">Led end-to-end product design across a portfolio of enterprise software platforms serving local government and regulated sectors.</p>
+      <ul>
+        <li>Owned user research, UX design, UI design, prototyping and front-end execution across multiple products simultaneously.</li>
+        <li>Built shared design systems and interaction patterns that unified fragmented product experiences across the division.</li>
+        <li>Partnered directly with product owners, engineering, QA, sales and senior stakeholders to align product direction with business strategy and client needs.</li>
+        <li>Improved usability, consistency and delivery efficiency through user-centred design and modern agile delivery practices.</li>
+      </ul>
+      <p class="role-impact"><strong>Impact:</strong> Increased delivery velocity &middot; Improved customer satisfaction and product quality across the division</p>
+    </article>
+
+    <article class="role role-mid">
+      <div class="role-header">
+        <span class="role-title">UX Manager &amp; Product Design Lead</span>
+        <span class="role-date">2015–2016</span>
+      </div>
+      <p class="role-company">JP Morgan</p>
+      <p class="role-intro">Led UX design for global mobile, web and desktop trading platforms across institutional and client-facing surfaces.</p>
+      <ul>
+        <li>Built and managed high-performing UX and visual design teams across multiple disciplines.</li>
+        <li>Defined enterprise-wide interaction standards, design patterns and governance models.</li>
+        <li>Partnered with engineering leadership to improve design-to-development handoff, quality and velocity.</li>
+      </ul>
+    </article>
+
+    <!-- Older roles — visible in Full only -->
+    <article class="role role-older">
+      <div class="role-header">
+        <span class="role-title">Mobile UX Lead</span>
+        <span class="role-date">2013–2015</span>
+      </div>
+      <p class="role-company">JP Morgan</p>
+      <p class="role-intro">Built the next generation of mobile products for one of the world's largest financial institutions.</p>
+      <ul>
+        <li>Grew the mobile design practice from 8 to 50+ designers and engineers.</li>
+        <li>Delivered award-winning enterprise and client-facing applications used by 250,000+ users globally.</li>
+        <li>Built mobile design systems and prototyping frameworks that scaled across the organisation.</li>
+      </ul>
+    </article>
+
+    <article class="role role-older">
+      <div class="role-header">
+        <span class="role-title">Design Lead</span>
+        <span class="role-date">2007–2013</span>
+      </div>
+      <p class="role-company">Alienation Ltd</p>
+      <p class="role-intro">Led UX, UI and digital product design across enterprise and consumer platforms — setting creative direction, defining the visual and interaction language across all client work, and heading up a team of designers from concept through to delivery. Played an active role in business development, contributing to pitches and client acquisition alongside the senior leadership team.</p>
+    </article>
+
+  </section>
+
+  <section id="skills" aria-labelledby="label-skills">
+    <p class="label" id="label-skills">Core Skills</p>
+    <!-- Brief: essential skills only -->
+    <p class="tag-list skills-brief">Design Leadership &middot; Product Strategy &middot; 0&rarr;1 Product Development &middot; UX &amp; UI Design &middot; Design Systems &middot; Engineering Partnership &middot; Stakeholder Management</p>
+    <!-- Summary + Full: full list -->
+    <p class="tag-list skills-full">Product Strategy &middot; UX Design &middot; UI Design &middot; Interaction Design &middot; Design Leadership &middot; Team Building &middot; Design Systems &middot; User Research &middot; Prototyping &middot; Agile Delivery &middot; Stakeholder Management &middot; Engineering Partnership &middot; Enterprise Software &middot; Digital Transformation &middot; Developer Experience &middot; Complex Systems &middot; Technical Products &middot; 0&rarr;1 Product Development &middot; Systems Thinking &middot; Change Leadership</p>
+  </section>
+
+  <section id="tools" aria-labelledby="label-tools">
+    <p class="label" id="label-tools">Tools</p>
+    <p class="tag-list">Figma &middot; HTML, CSS &amp; JS &middot; Lucid &middot; Dovetail &middot; Jira &middot; Confluence</p>
+  </section>
+
+  <section id="speaking" aria-labelledby="label-speaking">
+    <p class="label" id="label-speaking">Speaking &amp; Thought Leadership</p>
+    <div class="speaking">
+      <p>Speaker and published contributor across design, product and technology.</p>
+      <p>UX Glasgow &middot; BBC &middot; Creative Bloq &middot; Channel 4 &middot; .Net Magazine</p>
+    </div>
+  </section>
+
+  <section id="education" aria-labelledby="label-education">
+    <p class="label" id="label-education">Education</p>
+    <div class="education">
+      <p>BA (Hons) Applied Graphics Technology &amp; Graphic Design &mdash; Glasgow Caledonian University</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-name">Aidan Martin</span>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/aidanmartindesigner/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="#">Email</a>
+    <span style="color:#ddd">Glasgow, UK</span>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.view-btn');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.body.dataset.view = btn.dataset.view;
+      btns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    });
+  });
+</script>
+
+</body>
+</html>
