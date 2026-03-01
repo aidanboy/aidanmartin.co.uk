@@ -210,11 +210,17 @@
       color: #444;
     }
 
-    /* ── Skills / Tools ── */
-    .tag-list {
+    /* ── Capabilities ── */
+    .capabilities {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1rem;
+    }
+
+    .capabilities li {
       font-size: 1rem;
       color: #333;
-      line-height: 2;
     }
 
     /* ── Speaking / Education ── */
@@ -438,16 +444,42 @@
   </section>
 
   <section id="skills" aria-labelledby="label-skills">
-    <p class="label" id="label-skills">Core Skills</p>
-    <!-- Brief: essential skills only -->
-    <p class="tag-list skills-brief">Design Leadership &middot; Product Strategy &middot; 0&rarr;1 Product Development &middot; UX &amp; UI Design &middot; Design Systems &middot; Engineering Partnership &middot; Stakeholder Management</p>
-    <!-- Summary + Full: full list -->
-    <p class="tag-list skills-full">Product Strategy &middot; UX Design &middot; UI Design &middot; Interaction Design &middot; Design Leadership &middot; Team Building &middot; Design Systems &middot; User Research &middot; Prototyping &middot; Agile Delivery &middot; Stakeholder Management &middot; Engineering Partnership &middot; Enterprise Software &middot; Digital Transformation &middot; Developer Experience &middot; Complex Systems &middot; Technical Products &middot; 0&rarr;1 Product Development &middot; Systems Thinking &middot; Change Leadership</p>
+    <p class="label" id="label-skills">Capabilities</p>
+    <!-- Brief: core capabilities only -->
+    <ul class="capabilities skills-brief">
+      <li>Product Design</li>
+      <li>Developer Experience</li>
+      <li>Design Systems</li>
+      <li>0&rarr;1 Projects</li>
+      <li>Team Building</li>
+    </ul>
+    <!-- Summary + Full: full capabilities -->
+    <ul class="capabilities skills-full">
+      <li>Product Design</li>
+      <li>UX &amp; Interaction Design</li>
+      <li>Developer Experience</li>
+      <li>Web Design</li>
+      <li>Design Systems</li>
+      <li>0&rarr;1 Projects</li>
+      <li>Team Building &amp; Coaching</li>
+      <li>Engineering Partnership</li>
+      <li>Enterprise &amp; Fintech</li>
+      <li>User Research</li>
+      <li>Strategy</li>
+      <li>Stakeholder Management</li>
+    </ul>
   </section>
 
   <section id="tools" aria-labelledby="label-tools">
     <p class="label" id="label-tools">Tools</p>
-    <p class="tag-list">Figma &middot; HTML, CSS &amp; JS &middot; Lucid &middot; Dovetail &middot; Jira &middot; Confluence</p>
+    <ul class="capabilities">
+      <li>Figma</li>
+      <li>HTML, CSS &amp; JS</li>
+      <li>Lucid</li>
+      <li>Dovetail</li>
+      <li>Jira</li>
+      <li>Confluence</li>
+    </ul>
   </section>
 
   <section id="speaking" aria-labelledby="label-speaking">
