@@ -303,14 +303,20 @@
 
     /* Responsive — stack floating elements on small screens */
     @media (max-width: 680px) {
-      .site-name  { display: none; }
+      .site-name {
+        position: static;
+        display: block;
+        padding: 2rem 2rem 0;
+        font-size: 16px;
+      }
       .view-controls {
         position: static;
         display: flex;
         justify-content: flex-end;
-        padding: 1rem 1.5rem 0;
+        padding: 1rem 2rem 0;
       }
       .view-toggle { flex-direction: row; }
+      main { padding-top: 1rem; }
     }
   </style>
 </head>
