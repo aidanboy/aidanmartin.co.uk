@@ -22,17 +22,20 @@
     '  color: #999;',
     '  text-decoration: none;',
     '  line-height: 1.6;',
+    '  display: block;',
+    '  padding-left: 1em;',
     '  transition: color 0.15s;',
     '}',
     '.site-nav a:hover { color: #444; }',
     '.site-nav a[aria-current="page"] {',
     '  color: #111;',
+    '  padding-left: 0;',
     '}',
     '.site-nav a[aria-current="page"]::before {',
     '  content: "●";',
     '  font-family: "JetBrains Mono", monospace;',
-    '  font-size: 8px;',
-    '  margin-right: 0.4em;',
+    '  font-size: 7px;',
+    '  margin-right: 0.35em;',
     '  vertical-align: middle;',
     '  position: relative;',
     '  top: -1px;',
@@ -44,6 +47,7 @@
     '    gap: 1.25rem;',
     '    padding: 0.4rem 2rem 0;',
     '  }',
+    '  .site-nav a { padding-left: 0; }',
     '}',
   ].join('\n');
   document.head.appendChild(style);
@@ -63,6 +67,5 @@
     nav.appendChild(a);
   });
 
-  // Append directly to body so display:contents on site-header can't interfere
   document.body.appendChild(nav);
 })();
