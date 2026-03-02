@@ -9,7 +9,7 @@
     '.site-nav {',
     '  position: fixed;',
     '  left: 2.5rem;',
-    '  top: 4.25rem;',
+    '  top: 4rem;',
     '  display: flex;',
     '  flex-direction: column;',
     '  gap: 0.2rem;',
@@ -24,8 +24,19 @@
     '  line-height: 1.6;',
     '  transition: color 0.15s;',
     '}',
-    '.site-nav a:hover { color: #333; }',
-    '.site-nav a[aria-current="page"] { color: #111; }',
+    '.site-nav a:hover { color: #444; }',
+    '.site-nav a[aria-current="page"] {',
+    '  color: #111;',
+    '}',
+    '.site-nav a[aria-current="page"]::before {',
+    '  content: "●";',
+    '  font-family: "JetBrains Mono", monospace;',
+    '  font-size: 8px;',
+    '  margin-right: 0.4em;',
+    '  vertical-align: middle;',
+    '  position: relative;',
+    '  top: -1px;',
+    '}',
     '@media (max-width: 680px) {',
     '  .site-nav {',
     '    position: static;',
@@ -52,8 +63,6 @@
     nav.appendChild(a);
   });
 
-  var siteHeader = document.querySelector('.site-header');
-  if (siteHeader) {
-    siteHeader.after(nav);
-  }
+  // Append directly to body so display:contents on site-header can't interfere
+  document.body.appendChild(nav);
 })();
