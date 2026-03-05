@@ -11,15 +11,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { font-size: 14px; scroll-behavior: smooth; }
-
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
-    .sr-only {
-      position: absolute; width: 1px; height: 1px;
-      padding: 0; margin: -1px; overflow: hidden;
-      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-    }
+    html { font-size: 14px; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -28,21 +20,19 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    .skip-link {
-      position: absolute; top: -100%; left: 1rem;
-      background: #111; color: #fff;
-      padding: 0.5rem 1rem; font-size: 1rem;
-      border-radius: 0 0 4px 4px; text-decoration: none; z-index: 999;
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
-    .skip-link:focus { top: 0; }
 
     :focus-visible { outline: 2px solid #111; outline-offset: 3px; border-radius: 2px; }
 
     .site-name {
       position: fixed; left: 2.5rem; top: 2rem;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 16px; font-weight: 500; color: #111;
-      text-decoration: none; z-index: 10;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px; font-weight: 500;
+      color: #111; text-decoration: none; z-index: 10;
     }
     .site-name:hover { color: #444; }
 
@@ -52,14 +42,13 @@
     }
 
     .site-nav a {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 12px; font-weight: 400; color: #999;
       text-decoration: none; line-height: 1.6;
       padding-left: 1em; transition: color 0.15s;
     }
 
     .site-nav a:hover { color: #444; }
-
     .site-nav a[aria-current="page"] { color: #111; padding-left: 0; }
 
     .site-nav a[aria-current="page"]::before {
@@ -69,9 +58,7 @@
       vertical-align: middle; position: relative; top: -1px;
     }
 
-    main {
-      max-width: 450px; margin: 0 auto; padding: 2rem;
-    }
+    main { max-width: 450px; margin: 0 auto; padding: 2rem; }
 
     header { margin-bottom: 3rem; }
 
@@ -80,56 +67,48 @@
     }
 
     .label {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.7143rem; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: #666; margin-bottom: 1.25rem;
     }
 
     .experiments-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
     }
 
     .tile {
-      text-decoration: none; color: inherit; display: block;
+      display: block; color: inherit;
     }
 
     .tile-thumb {
-      aspect-ratio: 4 / 3;
-      background: #f5f5f5;
-      border-radius: 8px;
+      aspect-ratio: 4 / 3; background: #f5f5f5; border-radius: 8px;
       margin-bottom: 0.625rem;
       display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.15s;
     }
-
-    .tile:hover .tile-thumb { opacity: 0.75; }
 
     .tile-thumb-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 2rem; font-weight: 600; color: #ddd;
+      font-size: 2rem; font-weight: 600; color: #e5e5e5;
       letter-spacing: -0.04em; user-select: none;
     }
 
     .tile-title {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 0.8rem; font-weight: 500; color: #111; margin-bottom: 0.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem; font-weight: 500; color: #ccc; margin-bottom: 0.2rem;
     }
 
-    .tile-desc { font-size: 0.857rem; color: #666; line-height: 1.5; }
+    .tile-desc { font-size: 0.857rem; color: #bbb; line-height: 1.5; }
 
     footer {
       max-width: 450px; margin: 0 auto;
-      padding: 1.5rem 2rem 2rem;
-      border-top: 1px solid #ebebeb;
+      padding: 1.5rem 2rem 2rem; border-top: 1px solid #ebebeb;
       display: flex; justify-content: space-between;
       align-items: center; flex-wrap: wrap; gap: 0.5rem;
     }
 
     .footer-name {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.8571rem; font-weight: 600; color: #333;
     }
 
@@ -152,7 +131,6 @@
 </head>
 <body>
 
-<a href="#main" class="skip-link">Skip to main content</a>
 <a href="index.html" class="site-name">Aidan Martin</a>
 
 <nav class="site-nav" aria-label="Site navigation">
@@ -161,7 +139,6 @@
 </nav>
 
 <main id="main">
-
   <header>
     <h1 class="sr-only">Experiments, Aidan Martin</h1>
     <p class="header-intro">Small front-end experiments and prototypes.</p>
@@ -170,10 +147,25 @@
   <section aria-labelledby="label-experiments">
     <h2 class="label" id="label-experiments">All experiments</h2>
     <div class="experiments-grid">
-      <!-- Tiles go here -->
+
+      <div class="tile">
+        <div class="tile-thumb" aria-hidden="true">
+          <span class="tile-thumb-label">?</span>
+        </div>
+        <p class="tile-title">Coming soon</p>
+        <p class="tile-desc">Experiment in progress.</p>
+      </div>
+
+      <div class="tile">
+        <div class="tile-thumb" aria-hidden="true">
+          <span class="tile-thumb-label">?</span>
+        </div>
+        <p class="tile-title">Coming soon</p>
+        <p class="tile-desc">Experiment in progress.</p>
+      </div>
+
     </div>
   </section>
-
 </main>
 
 <footer>
@@ -186,7 +178,7 @@
 </footer>
 
 <script>
-  const el = document.querySelector('.email-link');
+  var el = document.querySelector('.email-link');
   if (el) el.href = 'mailto:' + 'aidanisavenue' + '@' + 'gmail.com';
 </script>
 
